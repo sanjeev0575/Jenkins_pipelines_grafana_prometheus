@@ -34,18 +34,19 @@ pipeline {
             }
         }
         
-    //     stage('Push to DockerHub') {
-    //         steps {
-    //             echo 'Pushing Docker image to DockerHub...'
-    //             script {
-    //                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-    //                     sh "echo \${DOCKER_PASSWORD} | docker login -u \${DOCKER_USERNAME} --password-stdin"
-    //                     sh "docker push ${DOCKER_HUB_REPO}:${env.IMAGE_TAG}"
-    //                     sh "docker push ${DOCKER_HUB_REPO}:latest"
-    //                 }
-    //             }
-    //         }
-    //     }
+        stage('Push to DockerHub') {
+            steps {
+                echo 'Pushing Docker image to DockerHub...'
+                script {
+                    //withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerpassword', usernameVariable: 'dockerusername')]) {
+                        sh "echo \${dockerpassword} | docker login -u \${dockerusername} --password-stdin"
+                        sh "docker push ${DOCKER_HUB_REPO}:${env.IMAGE_TAG}"
+                        sh "docker push ${DOCKER_HUB_REPO}:latest"
+                    }
+                }
+            }
+        }
         
     //     stage('Configure AWS and Kubectl') {
     //         steps {
