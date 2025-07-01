@@ -1,13 +1,13 @@
 pipeline {
     agent any
     
-    // environment {
-    //     DOCKER_HUB_REPO = 'kastrov/techsolutions-app'
+    environment {
+        DOCKER_HUB_REPO = 'sanjeev0181/techsolutions-app'
     //     K8S_CLUSTER_NAME = 'kastro-cluster'
     //     AWS_REGION = 'us-east-1'
     //     NAMESPACE = 'default'
     //     APP_NAME = 'techsolutions'
-    // }
+    }
     
     stages {
         stage('Checkout') {
@@ -17,22 +17,22 @@ pipeline {
             }
         }
         
-        // stage('Build Docker Image') {
-        //     steps {
-        //         echo 'Building Docker image...'
-        //         script {
-        //             def buildNumber = env.BUILD_NUMBER
-        //             def imageTag = "${DOCKER_HUB_REPO}:${buildNumber}"
-        //             def latestTag = "${DOCKER_HUB_REPO}:latest"
+        stage('Build Docker Image') {
+            steps {
+                echo 'Building Docker image...'
+                script {
+                    def buildNumber = env.BUILD_NUMBER
+                    def imageTag = "${DOCKER_HUB_REPO}:${buildNumber}"
+                    def latestTag = "${DOCKER_HUB_REPO}:latest"
                     
-        //             // Build the Docker image
-        //             sh "docker build -t ${imageTag} ."
-        //             sh "docker tag ${imageTag} ${latestTag}"
+                    // Build the Docker image
+                    sh "docker build -t ${imageTag} ."
+                    sh "docker tag ${imageTag} ${latestTag}"
                     
-        //             env.IMAGE_TAG = buildNumber
-        //         }
-        //     }
-        // }
+                    env.IMAGE_TAG = buildNumber
+                }
+            }
+        }
         
     //     stage('Push to DockerHub') {
     //         steps {
