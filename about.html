@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn With KASTRO - About The Training</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-logo h2 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 140px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,10L50,30L70,10" fill="none" stroke="%232563eb" stroke-width="0.5"/></svg>');
+            opacity: 0.05;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-header p {
+            font-size: 1.5rem;
+            color: #64748b;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Course Details */
+        .course-details {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .course-details h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .detail-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .detail-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .detail-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-card p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .price-tag {
+            background: white;
+            color: #2563eb;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            display: inline-block;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* About Content */
+        .about-content {
+            padding: 100px 0;
+            background: #ffffff;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #0d9488);
+            border-radius: 2px;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 2.5rem 0 1.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #0d9488, #ea580c);
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat h4 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat p {
+            font-size: 1.1rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            background: linear-gradient(135deg, #2563eb 0%, #0d9488 100%);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Trainer Section */
+        .trainer-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .trainer-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .trainer-image {
+            position: relative;
+        }
+
+        .trainer-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .trainer-badge {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            background: linear-gradient(135deg, #ea580c, #d97706);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(234, 88, 12, 0.3);
+        }
+
+        .trainer-info h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+        }
+
+        .trainer-info h3 {
+            font-size: 1.5rem;
+            color: #2563eb;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .trainer-info p {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .trainer-qualifications {
+            margin-top: 2rem;
+        }
+
+        .qualification-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .qualification-item i {
+            color: #2563eb;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 100px 0;
+            background: #ffffff;
+        }
+
+        .team h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 4rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #0d9488, #ea580c);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.5rem;
+            border: 4px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover img {
+            border-color: #2563eb;
+            transform: scale(1.05);
+        }
+
+        .team-member h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            color: #64748b;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .about-grid, .trainer-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .trainer-image {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .page-header p {
+                font-size: 1.2rem;
+            }
+
+            .about-text h2, .trainer-info h2 {
+                font-size: 2.5rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .about-text h2, .trainer-info h2 {
+                font-size: 2rem;
+            }
+
+            .team h2 {
+                font-size: 2.5rem;
+            }
+
+            .stat h4 {
+                font-size: 2.5rem;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2><i class="fas fa-laptop-code"></i> Learn With KASTRO</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/about" class="nav-link active">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/courses" class="nav-link">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/contact" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>About The Training</h1>
+            <p>Master Jenkins, Docker & Kubernetes - Basics to Advanced</p>
+        </div>
+    </section>
+
+    <section class="course-details">
+        <div class="container">
+            <h2>Upcoming Batch Details</h2>
+            <div class="details-grid">
+                <div class="detail-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Batch Starts</h3>
+                    <p>August 14, 2025</p>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Class Timings</h3>
+                    <p>05.00 - 06.30 PM</p>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-calendar-day"></i>
+                    <h3>Days</h3>
+                    <p>Monday - Friday</p>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-hourglass-half"></i>
+                    <h3>Duration</h3>
+                    <p>40 Days Intensive</p>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-laptop"></i>
+                    <h3>Mode</h3>
+                    <p>Online Live Sessions</p>
+                </div>
+            </div>
+            <div class="price-tag">
+                <i class="fas fa-tag"></i> ₹5500/-
+            </div>
+        </div>
+    </section>
+
+    <section class="about-content">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>Our Training Approach</h2>
+                    <p>Since 2020, Mr. Kastro Kiran has been delivering cutting-edge DevOps training programs that combine theoretical knowledge with hands-on practical experience. Our unique methodology focuses on real-world scenarios and project-based learning.</p>
+                    <p>Each session is carefully crafted to ensure participants gain not just certification knowledge but actual job-ready skills in Jenkins CI/CD pipelines, Docker containerization, and Kubernetes orchestration.</p>
+                    
+                    <h3>What Makes Us Different</h3>
+                    <p>Unlike traditional training programs, we emphasize building actual infrastructure that mirrors production environments. You'll work on live cloud platforms, troubleshoot real issues, and deploy applications just like DevOps professionals do daily.</p>
+                    
+                    <div class="stats">
+                        <div class="stat">
+                            <h4>2000+</h4>
+                            <p>Students Trained</p>
+                        </div>
+                        <div class="stat">
+                            <h4>10+</h4>
+                            <p>Worked with Institutes</p>
+                        </div>
+                        <div class="stat">
+                            <h4>5+</h4>
+                            <p>Years Training Experience</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="DevOps Training Environment">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trainer-section">
+        <div class="container">
+            <div class="trainer-container">
+                <div class="trainer-image">
+                    <img src="https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Kastro Kiran V">
+                    <div class="trainer-badge">
+                        Lead Trainer
+                    </div>
+                </div>
+                <div class="trainer-info">
+                    <h2>Kastro Kiran V</h2>
+                    <h3>DevOps & Cloud Training Specialist</h3>
+                    <p>Mr. Kastro Kiran V is a passionate DevOps educator currently pursuing his PhD while actively training professionals in cutting-edge cloud technologies. With 5+ years of dedicated training experience, he has successfully mentored over 2000+ students across various prestigious institutes including StarAgile and PaperLive.</p>
+                    <p>His training methodology combines academic rigor with industry relevance, focusing on practical implementation of AWS, Jenkins, Docker, and Kubernetes in real-world scenarios. Kastro's sessions are known for their clarity, depth, and emphasis on hands-on learning.</p>
+                    
+                    <div class="trainer-qualifications">
+                        <div class="qualification-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <p>PhD Candidate in Cloud Computing with research focus on container orchestration</p>
+                        </div>
+                        <div class="qualification-item">
+                            <i class="fas fa-certificate"></i>
+                            <p>Certified Kubernetes Administrator (CKA) and AWS Solutions Architect Professional</p>
+                        </div>
+                        <div class="qualification-item">
+                            <i class="fas fa-briefcase"></i>
+                            <p>Former DevOps Engineer with hands-on experience in enterprise deployments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team">
+        <div class="container">
+            <h2>Our Expert Instructors</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://media.licdn.com/dms/image/v2/D5603AQHJB_lF1d9OSw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718971147172?e=1756339200&v=beta&t=p1h7ouIiFIYdi6sy99Vf0Y0xWySUpnnv13T1dpkRBTkb&w=600" alt="KASTRO - Lead Instructor">
+                    <h3>Kastro Kiran V</h3>
+                    <p>Lead DevOps Instructor</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Learn With KASTRO. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
