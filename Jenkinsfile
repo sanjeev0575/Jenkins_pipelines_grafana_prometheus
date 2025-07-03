@@ -5,7 +5,7 @@ pipeline {
         DOCKER_HUB_REPO = 'sanjeev0181/techsolutions-app'
          K8S_CLUSTER_NAME = 'kastro-cluster'
          AWS_REGION = 'us-east-1'
-         NAMESPACE = 'default'
+             NAMESPACE = 'default'
          APP_NAME = 'techsolutions'
     }
     
@@ -53,7 +53,8 @@ pipeline {
                 echo 'Configuring AWS CLI and kubectl...'
                 script {
                     //withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-creds']]) {
-                    withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS Cred', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    //withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'AWS Cred', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'update_EKS', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
 
                         sh "aws configure set region ${AWS_REGION}"
                         sh "aws eks update-kubeconfig --region ${AWS_REGION} --name ${K8S_CLUSTER_NAME}"
