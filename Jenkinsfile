@@ -41,6 +41,7 @@ pipeline {
                     //withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                     withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerpassword', usernameVariable: 'dockerusername')]) {
                         sh "echo \${dockerpassword} | docker login -u \${dockerusername} --password-stdin"
+                        sh "sudo usermod -aG docker ${USER}"
                         sh "docker push ${DOCKER_HUB_REPO}:${env.IMAGE_TAG}"
                         sh "docker push ${DOCKER_HUB_REPO}:latest"
                     }
